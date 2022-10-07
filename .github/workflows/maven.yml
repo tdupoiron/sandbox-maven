@@ -19,6 +19,13 @@ jobs:
         distribution: 'zulu'
         cache: maven
         
+    - name: Cache Libs
+      id: cache-libs
+      uses: actions/cache@v3
+      with:
+        path: $HOME/.m2/repository
+        key: ${{ runner.os }}-libs
+        
     - name: Build with Maven
       run: mvn -B package -f sandbox-maven/pom.xml
 
