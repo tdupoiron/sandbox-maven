@@ -25,8 +25,16 @@ jobs:
     - name: Build with Maven
       run: mvn -B package -f sandbox-maven/pom.xml
 
-    - name: Get Package Name
-      run: find . -name $PACKAGE_PATTERN -printf "%f\n"
+    - name: Get Package Path
+      id: get_package
+      run: | 
+        echo "::set-output name=package_path::$(find . -name $PACKAGE_PATTERN))"
+        echo "::set-output name=package_name::$(find . -name $PACKAGE_PATTERN -printf \"%f\\n\"))"
+
+    - name: Use short SHA
+      run: |
+        echo "Package Path = ${{ steps.get_package.outputs.package_path }}"
+        echo "Package Name = ${{ steps.get_package.outputs.package_name }}"
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
