@@ -32,16 +32,11 @@ jobs:
         echo "::set-output name=package_path::$(find . -name $PACKAGE_PATTERN)"
         echo "::set-output name=package_name::$(find . -name $PACKAGE_PATTERN -printf "%f\n")"
 
-    - name: Use short SHA
-      run: |
-        echo "Package Path = ${{ steps.get_package.outputs.package_path }}"
-        echo "Package Name = ${{ steps.get_package.outputs.package_name }}"
-
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
-        name: maven-sandbox-lib
-        path: ./**/$PACKAGE_PATTERN
+        name: ${{ steps.get_package.outputs.package_name }}
+        path: ${{ steps.get_package.outputs.package_path }}
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -f sandbox-maven/pom.xml -s $GITHUB_WORKSPACE/settings.xml
