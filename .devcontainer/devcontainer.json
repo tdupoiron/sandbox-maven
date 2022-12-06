@@ -7,14 +7,9 @@
     }
   },
   "extensions": [
-    "GitHub.copilot",
-    "vscjava.vscode-java-pack",
-    "vscjava.vscode-java-test",
-    "vscjava.vscode-maven",
-    "github.vscode-codeql",
-    "github.vscode-pull-request-github",
-    "slevesque.vscode-zipexplorer"
-  ],
+	"GitHub.copilot",
+	"GitHub.vscode-codeql"
+],
   "postCreateCommand": "git submodule init && git submodule update --recursive",
   "settings": {
     "java.configuration.updateBuildConfiguration": "interactive",
