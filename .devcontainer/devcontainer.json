@@ -8,7 +8,8 @@
   },
   "extensions": [
 	"GitHub.copilot",
-	"GitHub.vscode-codeql"
+	"GitHub.vscode-codeql",
+  "vscjava.vscode-java-pack"
 ],
   "settings": {
   }

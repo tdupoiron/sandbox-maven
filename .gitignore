@@ -1,1 +1,3 @@
 codeql*
+database
+sandbox-maven/target
